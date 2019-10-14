@@ -382,7 +382,7 @@ if __name__ == '__main__':
     parser.add_argument('-p', dest='clave', type=str, required=True, help='clave.')
     args = parser.parse_args()
     try:
-        sig_xml = sign_file(leecertificado(args.certificado), args.clave, parse_xml(args.origen))
+        sig_xml = sign_file(leecertificado(args.certificado), str.encode(args.clave), parse_xml(args.origen))
         save_xml(args.destino or args.origen, sig_xml)
     except crypto.Error as e:
         print ('Error en certificado/clave')
